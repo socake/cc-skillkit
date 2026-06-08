@@ -1,0 +1,19 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Local scratch / test output
+/tmp/
+*.log
+.scratch/
+
+# Never commit secrets
+*.pem
+*.key
+.env
+.env.*
+!.env.example
