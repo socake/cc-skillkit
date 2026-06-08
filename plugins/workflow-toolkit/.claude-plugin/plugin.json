@@ -1,0 +1,20 @@
+{
+  "name": "workflow-toolkit",
+  "description": "Engineering workflow skills for Claude Code: structured ops sessions, long-task protocol, PR writing, architecture diagrams, shareable reports, and browser e2e verification.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Wenzhuo Huang"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/socake/cc-skillkit",
+  "repository": "https://github.com/socake/cc-skillkit",
+  "keywords": [
+    "workflow",
+    "productivity",
+    "methodology",
+    "documentation",
+    "diagrams",
+    "code-review",
+    "e2e"
+  ]
+}

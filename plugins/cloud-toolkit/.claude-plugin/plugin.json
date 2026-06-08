@@ -1,0 +1,21 @@
+{
+  "name": "cloud-toolkit",
+  "description": "Cloud governance skills for Claude Code: AWS/Aliyun cost review and least-privilege IAM/RAM auditing. Vendor-neutral, read-only, secret-free.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Wenzhuo Huang"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/socake/cc-skillkit",
+  "repository": "https://github.com/socake/cc-skillkit",
+  "keywords": [
+    "aws",
+    "aliyun",
+    "finops",
+    "cost-optimization",
+    "iam",
+    "ram",
+    "least-privilege",
+    "cloud-governance"
+  ]
+}

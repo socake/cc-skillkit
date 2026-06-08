@@ -36,7 +36,7 @@ ship a coherent set.
 
 `marketplace.json` references plugins by **relative** path (`./plugins/ops-toolkit`),
 and `install.sh` resolves the repo root from its own location. Nothing assumes a
-home directory or a checkout location. The same scripts run from `/data/personal`,
+home directory or a checkout location. The same scripts run from `~/projects`,
 `~/code`, or a CI runner. Remote install (`CC_SKILLKIT_SOURCE=USER/repo`) skips the
 checkout entirely.
 

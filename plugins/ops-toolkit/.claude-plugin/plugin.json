@@ -1,7 +1,7 @@
 {
   "name": "ops-toolkit",
   "description": "Battle-tested DevOps & SRE skills for Claude Code: structured Kubernetes triage and more. Vendor-neutral, secret-free, works on any cluster.",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": {
     "name": "Wenzhuo Huang"
   },
