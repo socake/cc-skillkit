@@ -1,5 +1,7 @@
 # cc-skillkit
 
+**English** | [中文](README.zh-CN.md)
+
 > A personal, portable kit of **Claude Code skills** — DevOps, SRE, cloud-governance
 > and engineering-workflow skills packaged as installable plugins. Install on any
 > machine in one command, no clone required.
