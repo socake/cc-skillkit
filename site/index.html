@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>cc-skillkit — portable Claude Code skills for DevOps &amp; SRE</title>
+<meta name="description" content="A personal, portable kit of Claude Code skills — DevOps & SRE workflows packaged as an installable plugin marketplace. Install on any machine in one command." />
+<style>
+  :root{
+    --bg:#0b0d10; --bg-soft:#101317; --card:#14181e; --line:#232a33;
+    --ink:#e7ebf2; --ink-dim:#9aa4b2; --ink-faint:#6b7480;
+    --accent:#e8854e; --accent-2:#57c8bd; --code:#0d1014;
+    --radius:14px; --maxw:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  code,pre{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  .muted{color:var(--ink-dim)}
+
+  /* glow backdrop */
+  .hero{
+    position:relative; overflow:hidden; padding:96px 0 72px;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(900px 380px at 78% -8%, rgba(232,133,78,.16), transparent 60%),
+      radial-gradient(700px 320px at 8% 4%, rgba(87,200,189,.10), transparent 55%);
+  }
+  .eyebrow{
+    display:inline-flex; gap:8px; align-items:center; font-size:13px; letter-spacing:.02em;
+    color:var(--ink-dim); border:1px solid var(--line); background:var(--bg-soft);
+    padding:6px 12px; border-radius:999px; margin-bottom:22px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 12px var(--accent-2)}
+  h1{
+    font-size:clamp(40px,6vw,68px); line-height:1.02; margin:0 0 18px;
+    letter-spacing:-.03em; font-weight:700;
+  }
+  h1 .grad{
+    background:linear-gradient(95deg,var(--accent),#f2b486 60%,var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .lead{font-size:clamp(17px,2vw,21px); color:var(--ink-dim); max-width:620px; margin:0 0 32px}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border-radius:10px;
+    font-weight:600; font-size:15px; text-decoration:none; border:1px solid transparent; transition:.16s;
+  }
+  .btn-primary{background:var(--accent); color:#1a0f08}
+  .btn-primary:hover{background:#f0966a; transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--line); background:var(--bg-soft); color:var(--ink)}
+  .btn-ghost:hover{border-color:#34404d; transform:translateY(-1px)}
+
+  .install{
+    margin-top:34px; background:var(--code); border:1px solid var(--line);
+    border-radius:12px; padding:16px 18px; max-width:620px; position:relative;
+  }
+  .install .label{font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-bottom:8px}
+  .install pre{margin:0; white-space:pre-wrap; font-size:14.5px; color:#dfe6ef}
+  .install .c{color:var(--ink-faint)}
+  .install .k{color:var(--accent-2)}
+
+  section{padding:72px 0}
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-size:28px; letter-spacing:-.02em; margin:0 0 8px}
+  .sec-head p{margin:0; color:var(--ink-dim); max-width:640px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px; transition:.18s; position:relative;
+  }
+  .card:hover{border-color:#3a4754; transform:translateY(-3px); box-shadow:0 14px 40px -20px rgba(0,0,0,.8)}
+  .card .name{display:flex; align-items:center; gap:10px; margin-bottom:10px}
+  .card .name code{font-size:16px; font-weight:600; color:var(--accent)}
+  .tag{font-size:11px; color:var(--ink-faint); border:1px solid var(--line); padding:2px 8px; border-radius:999px}
+  .card p{margin:0 0 14px; color:var(--ink-dim); font-size:14.5px}
+  .triggers{display:flex; flex-wrap:wrap; gap:6px}
+  .chip{font-size:11.5px; color:var(--accent-2); background:rgba(87,200,189,.08); border:1px solid rgba(87,200,189,.2); padding:3px 9px; border-radius:6px}
+
+  .why{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
+  .why .item{border-left:2px solid var(--accent); padding:4px 0 4px 16px}
+  .why .item h3{margin:0 0 6px; font-size:16px}
+  .why .item p{margin:0; color:var(--ink-dim); font-size:14px}
+
+  .principles{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .plist{display:grid; gap:14px; counter-reset:p}
+  .plist li{
+    list-style:none; display:flex; gap:14px; align-items:flex-start;
+    padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:12px;
+  }
+  .plist li::before{
+    counter-increment:p; content:counter(p,decimal-leading-zero);
+    font-variant-numeric:tabular-nums; color:var(--accent); font-weight:700; font-size:14px;
+    border:1px solid var(--line); border-radius:8px; padding:4px 8px; background:var(--code);
+  }
+  .plist b{color:var(--ink)}
+  .plist span{color:var(--ink-dim); font-size:14.5px}
+
+  footer{padding:48px 0; border-top:1px solid var(--line); color:var(--ink-faint); font-size:14px}
+  footer a{color:var(--ink-dim); text-decoration:none}
+  footer a:hover{color:var(--ink)}
+  .foot-row{display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow"><span class="dot"></span> Claude Code · plugin marketplace</span>
+    <h1>Portable skills for<br><span class="grad">DevOps &amp; SRE work</span></h1>
+    <p class="lead">A personal kit of <strong>Claude Code skills</strong> — packaged as an installable
+      plugin marketplace. Versioned, CI-validated, and portable to any machine in one command.
+      No symlinks tied to one laptop.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="https://github.com/socake/cc-skillkit">View on GitHub →</a>
+      <a class="btn btn-ghost" href="#skills">Browse skills</a>
+    </div>
+    <div class="install">
+      <div class="label">Install on any machine — no clone needed</div>
+<pre><span class="c"># register the marketplace + install the plugin</span>
+<span class="k">claude</span> plugin marketplace add socake/cc-skillkit
+<span class="k">claude</span> plugin install ops-toolkit@cc-skillkit</pre>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Skills</h2>
+      <p>Each skill is vendor-neutral and secret-free — real operational experience distilled into
+        general, repeatable procedure. Claude loads them on demand.</p>
+    </div>
+    <div class="grid">
+
+      <article class="card">
+        <div class="name"><code>k8s-triage</code> <span class="tag">ops-toolkit</span></div>
+        <p>Read-only, evidence-first triage of an unhealthy Kubernetes workload. Drives a fixed
+           order — workload → events → logs → scheduling → networking — and reports a
+           <em>named root cause</em>, not a log dump.</p>
+        <div class="triggers">
+          <span class="chip">CrashLoopBackOff</span><span class="chip">Pending</span>
+          <span class="chip">OOMKilled</span><span class="chip">ImagePullBackOff</span>
+          <span class="chip">stuck rollout</span><span class="chip">post-deploy 5xx</span>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="name"><code>incident-rca</code> <span class="tag">ops-toolkit</span></div>
+        <p>Methodical root-cause analysis for an incident or regression: reconstruct the timeline,
+           correlate with changes, test hypotheses in parallel under strict evidence discipline,
+           then emit a root-cause card or blameless postmortem.</p>
+        <div class="triggers">
+          <span class="chip">timeline</span><span class="chip">change correlation</span>
+          <span class="chip">hypothesis matrix</span><span class="chip">5 whys</span>
+          <span class="chip">postmortem</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><h2>Why a marketplace, not loose skills</h2></div>
+    <div class="why">
+      <div class="item"><h3>Portable</h3><p><code>marketplace add socake/cc-skillkit</code> rebuilds everything on a fresh box. No absolute paths.</p></div>
+      <div class="item"><h3>Versioned &amp; validated</h3><p>Semver per plugin; CI checks every skill's frontmatter, naming, and manifest on each push.</p></div>
+      <div class="item"><h3>One-command lifecycle</h3><p>Install · update · uninstall · enable · disable through the official <code>claude plugin</code> CLI.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="principles">
+  <div class="wrap">
+    <div class="sec-head"><h2>Design principles</h2><p>The reasoning behind the kit — visible in every skill.</p></div>
+    <ul class="plist">
+      <li><span><b>Evidence before assertion.</b> Every conclusion carries a pointer — a log line, a metric, a timestamp. No bare guesses.</span></li>
+      <li><span><b>Read-only first.</b> Skills that touch infrastructure diagnose without mutating state; they propose the fix, a human applies it.</span></li>
+      <li><span><b>Progressive disclosure.</b> <code>SKILL.md</code> stays lean; heavy playbooks live one level down and load only when relevant.</span></li>
+      <li><span><b>Vendor-neutral.</b> Hard-won lessons survive as general guidance — useful to anyone, tied to no one's internal stack.</span></li>
+      <li><span><b>Quality over count.</b> A coherent, trustworthy set beats a kitchen-sink dump. CI is the gate.</span></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <span>MIT © Wenzhuo Huang · <span class="muted">cc-skillkit</span></span>
+    <span>
+      <a href="https://github.com/socake/cc-skillkit">GitHub</a> ·
+      <a href="https://github.com/socake/cc-skillkit/blob/main/docs/design.md">Design notes</a> ·
+      <a href="https://github.com/socake/cc-skillkit/actions">CI</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
