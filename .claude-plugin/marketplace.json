@@ -7,14 +7,14 @@
   },
   "metadata": {
     "description": "A personal, portable Claude Code skill kit — DevOps / platform-engineering skills packaged as installable plugins. Clone-free install on any machine.",
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
       "name": "ops-toolkit",
       "source": "./plugins/ops-toolkit",
       "description": "Battle-tested DevOps & SRE skills: structured Kubernetes triage and more. Vendor-neutral, no secrets, works anywhere kubectl does.",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": {
         "name": "Wenzhuo Huang"
       },

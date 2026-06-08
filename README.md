@@ -39,6 +39,7 @@ Remove everything with `./scripts/uninstall.sh`.
 | Plugin | Skill | What it does |
 |--------|-------|--------------|
 | `ops-toolkit` | [`k8s-triage`](plugins/ops-toolkit/skills/k8s-triage/SKILL.md) | Read-only, evidence-first triage of an unhealthy Kubernetes workload (CrashLoop / Pending / OOM / ImagePull / stuck rollout / post-deploy 5xx). Drives a fixed order and reports a *named root cause*, not a log dump. |
+| `ops-toolkit` | [`incident-rca`](plugins/ops-toolkit/skills/incident-rca/SKILL.md) | Methodical root-cause analysis for an incident/outage/regression: reconstruct the timeline, correlate with changes, test hypotheses in parallel with evidence discipline, and produce a root-cause card or blameless postmortem. |
 
 _More skills are added over time — each one vendor-neutral and secret-free._
 

@@ -5,7 +5,7 @@
 # Two modes, same command:
 #   Local  (default): registers this checkout as a marketplace by path.
 #   Remote (CI / fresh box, no clone needed):
-#       CC_SKILLKIT_SOURCE=USERNAME/cc-skillkit ./scripts/install.sh
+#       CC_SKILLKIT_SOURCE=socake/cc-skillkit ./scripts/install.sh
 #
 # Idempotent: safe to re-run; updates instead of failing if already present.
 set -euo pipefail
