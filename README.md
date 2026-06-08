@@ -1,12 +1,14 @@
 # cc-skillkit
 
-> A personal, portable kit of **Claude Code skills** — DevOps & SRE workflows
-> packaged as an installable plugin marketplace. Install on any machine in one
-> command, no clone required.
+> A personal, portable kit of **Claude Code skills** — DevOps, SRE, cloud-governance
+> and engineering-workflow skills packaged as installable plugins. Install on any
+> machine in one command, no clone required.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-d97757)](https://code.claude.com/docs/en/plugin-marketplaces)
 [![Validate](https://github.com/socake/cc-skillkit/actions/workflows/validate.yml/badge.svg)](https://github.com/socake/cc-skillkit/actions/workflows/validate.yml)
+
+**13 skills · 3 plugins · 1 command to install.** 🌐 [Landing page](https://socake.github.io/cc-skillkit/)
 
 Skills are folders of instructions that Claude Code loads on demand to do
 specialized tasks in a repeatable way. This repo packages mine as a proper
@@ -16,39 +18,58 @@ machines — not a pile of symlinks tied to one laptop.
 ## Install
 
 On any machine with [Claude Code](https://code.claude.com) installed — **no clone
-needed**:
+needed**. Add the marketplace once, then install whichever toolkit you want:
 
 ```bash
 claude plugin marketplace add socake/cc-skillkit
-claude plugin install ops-toolkit@cc-skillkit
+
+claude plugin install ops-toolkit@cc-skillkit       # K8s/EKS/ACK triage, RCA, Dockerfile audit
+claude plugin install cloud-toolkit@cc-skillkit     # AWS cost scan, IAM/RAM audit
+claude plugin install workflow-toolkit@cc-skillkit  # PR descriptions, ops sessions, diagrams, reports…
 # restart Claude Code, then:  claude plugin list
 ```
 
-Or, working from a local checkout (for development):
-
-```bash
-git clone https://github.com/socake/cc-skillkit.git
-cd cc-skillkit
-./scripts/install.sh        # idempotent; registers the marketplace by path
-```
-
-Remove everything with `./scripts/uninstall.sh`.
+Or from a local checkout (for development): `./scripts/install.sh`. Remove with
+`./scripts/uninstall.sh`.
 
 ## Skills
 
-| Plugin | Skill | What it does |
-|--------|-------|--------------|
-| `ops-toolkit` | [`k8s-triage`](plugins/ops-toolkit/skills/k8s-triage/SKILL.md) | Read-only, evidence-first triage of an unhealthy Kubernetes workload (CrashLoop / Pending / OOM / ImagePull / stuck rollout / post-deploy 5xx). Drives a fixed order and reports a *named root cause*, not a log dump. |
-| `ops-toolkit` | [`incident-rca`](plugins/ops-toolkit/skills/incident-rca/SKILL.md) | Methodical root-cause analysis for an incident/outage/regression: reconstruct the timeline, correlate with changes, test hypotheses in parallel with evidence discipline, and produce a root-cause card or blameless postmortem. |
+### `ops-toolkit` — triage & review
 
-_More skills are added over time — each one vendor-neutral and secret-free._
+| Skill | What it does |
+|-------|--------------|
+| [`k8s-triage`](plugins/ops-toolkit/skills/k8s-triage/SKILL.md) | Read-only, evidence-first triage of an unhealthy Kubernetes workload — fixed order, named root cause, not a log dump. |
+| [`incident-rca`](plugins/ops-toolkit/skills/incident-rca/SKILL.md) | Methodical root-cause analysis: timeline, change correlation, parallel hypotheses under evidence discipline, root-cause card / postmortem. |
+| [`eks-triage`](plugins/ops-toolkit/skills/eks-triage/SKILL.md) | EKS-specific triage: nodegroup won't join, VPC CNI CrashLoop, IRSA/IAM gaps, Karpenter not scaling, subnet IP exhaustion. |
+| [`ack-triage`](plugins/ops-toolkit/skills/ack-triage/SKILL.md) | Aliyun ACK-specific triage: ECI image-pull timeouts, node pools, Terway CNI, CCM/SLB with no backends. |
+| [`dockerfile-audit`](plugins/ops-toolkit/skills/dockerfile-audit/SKILL.md) | Audit a Dockerfile across security, size, reproducibility and maintainability — severity-ranked issues with fixes. |
+
+### `cloud-toolkit` — cloud governance
+
+| Skill | What it does |
+|-------|--------------|
+| [`aws-cost-scan`](plugins/cloud-toolkit/skills/aws-cost-scan/SKILL.md) | Read-only sweep for AWS waste — idle load balancers, unattached EIPs, orphan snapshots, over-provisioned pools — ranked by monthly savings. |
+| [`ram-iam-audit`](plugins/cloud-toolkit/skills/ram-iam-audit/SKILL.md) | Least-privilege audit for AWS IAM + Aliyun RAM — wildcard actions, FullAccess sprawl, stale keys, privilege-escalation combos. |
+
+### `workflow-toolkit` — engineering workflow & output
+
+| Skill | What it does |
+|-------|--------------|
+| [`pr-describe`](plugins/workflow-toolkit/skills/pr-describe/SKILL.md) | Turn a diff into a clear, reviewer-friendly PR description — what/why/how, risks, testing, rollback, reviewer notes. |
+| [`ops-session`](plugins/workflow-toolkit/skills/ops-session/SKILL.md) | A structured operational-session protocol — Plan→RootCause→Action→Verify→Learn, weak root causes hard-block writes, conclusions cite evidence. |
+| [`task-kickoff`](plugins/workflow-toolkit/skills/task-kickoff/SKILL.md) | An opening protocol for complex, long tasks — plan/implement split, HITL gates, stop-loss after two failures, multi-round verification. |
+| [`html-report`](plugins/workflow-toolkit/skills/html-report/SKILL.md) | Render a long markdown report into a polished, self-contained HTML onepager — cards, tables, collapsible sections, filter chips. |
+| [`drawio-arch`](plugins/workflow-toolkit/skills/drawio-arch/SKILL.md) | End-to-end draw.io diagrams — architecture, flows, topology — rendered to PNG/SVG via the CLI, with a semantic style system. |
+| [`browser-verify`](plugins/workflow-toolkit/skills/browser-verify/SKILL.md) | Containerized real-browser e2e verification over CDP — drive a click path, capture console/network, correlate with backend logs, return pass/fail. |
+
+_Every skill is vendor-neutral and secret-free._
 
 ## Add your own skill
 
 ```bash
-./scripts/new-skill.sh my-skill            # scaffolds a spec-compliant SKILL.md
+./scripts/new-skill.sh my-skill ops-toolkit   # scaffolds a spec-compliant SKILL.md
 $EDITOR plugins/ops-toolkit/skills/my-skill/SKILL.md
-./scripts/install.sh                        # reload
+./scripts/install.sh                            # reload
 ```
 
 Authoring conventions live in [`CLAUDE.md`](CLAUDE.md); CI enforces them.
@@ -70,9 +91,10 @@ Design notes and trade-offs: [`docs/design.md`](docs/design.md).
 .claude-plugin/marketplace.json   marketplace entry (lists plugins)
 plugins/<plugin>/
   .claude-plugin/plugin.json      plugin manifest
-  skills/<skill>/SKILL.md         a skill (+ optional references/)
-scripts/                          install · uninstall · new-skill
-.github/workflows/validate.yml    CI
+  skills/<skill>/SKILL.md         a skill (+ optional references/, assets/)
+scripts/                          install · uninstall · new-skill · validate
+site/                             GitHub Pages landing page
+.github/workflows/                validate.yml (CI) · pages.yml (deploy)
 CLAUDE.md                         authoring guide
 ```
 

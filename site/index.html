@@ -4,12 +4,11 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>cc-skillkit — portable Claude Code skills for DevOps &amp; SRE</title>
-<meta name="description" content="A personal, portable kit of Claude Code skills — DevOps & SRE workflows packaged as an installable plugin marketplace. Install on any machine in one command." />
+<meta name="description" content="A personal, portable kit of Claude Code skills — DevOps, SRE, cloud-governance and engineering-workflow skills as installable plugins. One-command install on any machine." />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230b0d10'/%3E%3Ctext x='16' y='22' font-family='monospace' font-size='15' font-weight='700' fill='%23e8854e' text-anchor='middle'%3E&lt;/%3E%3C/text%3E%3C/svg%3E" />
-<!-- Open Graph / social -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="cc-skillkit — portable Claude Code skills for DevOps & SRE" />
-<meta property="og:description" content="DevOps & SRE skills for Claude Code, packaged as an installable plugin marketplace. One-command install on any machine." />
+<meta property="og:title" content="cc-skillkit — portable Claude Code skills" />
+<meta property="og:description" content="13 DevOps / SRE / cloud / workflow skills for Claude Code, packaged as installable plugins. One-command install on any machine." />
 <meta property="og:url" content="https://socake.github.io/cc-skillkit/" />
 <meta name="twitter:card" content="summary_large_image" />
 <style>
@@ -17,27 +16,20 @@
     --bg:#0b0d10; --bg-soft:#101317; --card:#14181e; --line:#232a33; --line-2:#2e3742;
     --ink:#e7ebf2; --ink-dim:#9aa4b2; --ink-faint:#6b7480;
     --accent:#e8854e; --accent-2:#57c8bd; --code:#0d1014;
-    --radius:14px; --maxw:1080px; --nav-h:60px;
+    --radius:14px; --maxw:1100px; --nav-h:60px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    margin:0; background:var(--bg); color:var(--ink);
+  body{margin:0; background:var(--bg); color:var(--ink);
     font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Microsoft YaHei",sans-serif;
-    line-height:1.6; -webkit-font-smoothing:antialiased;
-  }
+    line-height:1.6; -webkit-font-smoothing:antialiased}
   a{color:inherit; text-decoration:none}
   code,pre,kbd{font-family:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
-  .muted{color:var(--ink-dim)}
-  [hidden]{display:none !important}
+  .muted{color:var(--ink-dim)} [hidden]{display:none !important}
 
-  /* ---------- nav ---------- */
-  nav.bar{
-    position:sticky; top:0; z-index:50; height:var(--nav-h);
-    display:flex; align-items:center; backdrop-filter:saturate(160%) blur(12px);
-    background:rgba(11,13,16,.72); border-bottom:1px solid var(--line);
-  }
+  nav.bar{position:sticky; top:0; z-index:50; height:var(--nav-h); display:flex; align-items:center;
+    backdrop-filter:saturate(160%) blur(12px); background:rgba(11,13,16,.72); border-bottom:1px solid var(--line)}
   nav.bar .wrap{display:flex; align-items:center; gap:18px; width:100%}
   .brand{display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:-.01em}
   .brand .mk{color:var(--accent); font-family:ui-monospace,monospace}
@@ -46,88 +38,78 @@
   .nav-links a:hover{color:var(--ink)}
   .nav-right{margin-left:auto; display:flex; align-items:center; gap:10px}
   .gh{display:inline-flex; align-items:center; gap:7px; color:var(--ink-dim); font-size:14px; padding:7px 12px; border:1px solid var(--line); border-radius:9px; transition:.15s}
-  .gh:hover{color:var(--ink); border-color:var(--line-2)}
-  .gh svg{width:16px;height:16px;fill:currentColor}
-  /* language toggle */
+  .gh:hover{color:var(--ink); border-color:var(--line-2)} .gh svg{width:16px;height:16px;fill:currentColor}
   .lang{display:inline-flex; border:1px solid var(--line); border-radius:9px; overflow:hidden}
-  .lang button{
-    background:transparent; color:var(--ink-faint); border:0; cursor:pointer;
-    font:inherit; font-size:13px; padding:7px 11px; transition:.15s;
-  }
+  .lang button{background:transparent; color:var(--ink-faint); border:0; cursor:pointer; font:inherit; font-size:13px; padding:7px 11px; transition:.15s}
   .lang button[aria-pressed="true"]{background:var(--accent); color:#1a0f08; font-weight:600}
   .lang button:not([aria-pressed="true"]):hover{color:var(--ink)}
 
-  /* ---------- hero ---------- */
-  .hero{
-    position:relative; overflow:hidden; padding:88px 0 70px; border-bottom:1px solid var(--line);
-    background:
-      radial-gradient(900px 380px at 78% -8%, rgba(232,133,78,.16), transparent 60%),
-      radial-gradient(700px 320px at 8% 4%, rgba(87,200,189,.10), transparent 55%);
-  }
+  .hero{position:relative; overflow:hidden; padding:84px 0 64px; border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 380px at 78% -8%, rgba(232,133,78,.16), transparent 60%),
+      radial-gradient(700px 320px at 8% 4%, rgba(87,200,189,.10), transparent 55%)}
   .eyebrow{display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--ink-dim);
     border:1px solid var(--line); background:var(--bg-soft); padding:6px 12px; border-radius:999px; margin-bottom:22px}
   .dot{width:7px;height:7px;border-radius:50%;background:var(--accent-2);box-shadow:0 0 12px var(--accent-2)}
-  h1{font-size:clamp(38px,6vw,66px); line-height:1.03; margin:0 0 18px; letter-spacing:-.03em; font-weight:700}
-  h1 .grad{background:linear-gradient(95deg,var(--accent),#f2b486 60%,var(--accent-2));
-    -webkit-background-clip:text; background-clip:text; color:transparent}
-  .lead{font-size:clamp(16px,2vw,21px); color:var(--ink-dim); max-width:640px; margin:0 0 30px}
+  h1{font-size:clamp(38px,6vw,64px); line-height:1.03; margin:0 0 18px; letter-spacing:-.03em; font-weight:700}
+  h1 .grad{background:linear-gradient(95deg,var(--accent),#f2b486 60%,var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .lead{font-size:clamp(16px,2vw,20px); color:var(--ink-dim); max-width:660px; margin:0 0 22px}
+  .stats{display:flex; gap:22px; flex-wrap:wrap; margin:0 0 28px; color:var(--ink-faint); font-size:14px}
+  .stats b{color:var(--accent); font-size:20px; font-variant-numeric:tabular-nums}
+  .stats .stat{display:flex; align-items:baseline; gap:7px}
   .cta{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
-  .btn{display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border-radius:10px;
-    font-weight:600; font-size:15px; border:1px solid transparent; transition:.16s; cursor:pointer}
-  .btn-primary{background:var(--accent); color:#1a0f08}
-  .btn-primary:hover{background:#f0966a; transform:translateY(-1px)}
-  .btn-ghost{border-color:var(--line); background:var(--bg-soft); color:var(--ink)}
-  .btn-ghost:hover{border-color:var(--line-2); transform:translateY(-1px)}
+  .btn{display:inline-flex; align-items:center; gap:9px; padding:11px 18px; border-radius:10px; font-weight:600; font-size:15px; border:1px solid transparent; transition:.16s; cursor:pointer}
+  .btn-primary{background:var(--accent); color:#1a0f08} .btn-primary:hover{background:#f0966a; transform:translateY(-1px)}
+  .btn-ghost{border-color:var(--line); background:var(--bg-soft); color:var(--ink)} .btn-ghost:hover{border-color:var(--line-2); transform:translateY(-1px)}
 
-  /* ---------- code block + copy ---------- */
   .codeblock{position:relative; background:var(--code); border:1px solid var(--line); border-radius:12px; padding:15px 16px}
-  .codeblock.lg{margin-top:32px; max-width:640px}
+  .codeblock.lg{margin-top:30px; max-width:660px}
   .codeblock .label{font-size:11.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.08em; margin-bottom:9px; padding-right:64px}
-  .codeblock pre{margin:0; white-space:pre-wrap; font-size:14px; color:#dfe6ef; line-height:1.7}
+  .codeblock pre{margin:0; white-space:pre-wrap; font-size:13.5px; color:#dfe6ef; line-height:1.75}
   .codeblock .c{color:var(--ink-faint)} .codeblock .k{color:var(--accent-2)}
-  .copy-btn{
-    position:absolute; top:10px; right:10px; display:inline-flex; align-items:center; gap:6px;
-    background:var(--bg-soft); color:var(--ink-dim); border:1px solid var(--line); border-radius:8px;
-    font:inherit; font-size:12px; padding:5px 10px; cursor:pointer; transition:.15s;
-  }
-  .copy-btn:hover{color:var(--ink); border-color:var(--line-2)}
-  .copy-btn.ok{color:var(--accent-2); border-color:rgba(87,200,189,.4)}
+  .copy-btn{position:absolute; top:10px; right:10px; display:inline-flex; align-items:center; gap:6px;
+    background:var(--bg-soft); color:var(--ink-dim); border:1px solid var(--line); border-radius:8px; font:inherit; font-size:12px; padding:5px 10px; cursor:pointer; transition:.15s}
+  .copy-btn:hover{color:var(--ink); border-color:var(--line-2)} .copy-btn.ok{color:var(--accent-2); border-color:rgba(87,200,189,.4)}
   .copy-btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2}
 
-  /* ---------- sections ---------- */
-  section{padding:70px 0; scroll-margin-top:var(--nav-h)}
-  .sec-head{margin-bottom:32px}
+  section{padding:64px 0; scroll-margin-top:var(--nav-h)}
+  .sec-head{margin-bottom:30px}
   .sec-head h2{font-size:27px; letter-spacing:-.02em; margin:0 0 8px}
-  .sec-head p{margin:0; color:var(--ink-dim); max-width:660px}
+  .sec-head p{margin:0; color:var(--ink-dim); max-width:680px}
 
-  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px; transition:.18s}
+  /* plugin group */
+  .plugin-group{margin-bottom:38px}
+  .pg-head{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:16px; flex-wrap:wrap; padding-bottom:12px; border-bottom:1px solid var(--line)}
+  .pg-title{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+  .pg-title code{font-size:17px; font-weight:700; color:var(--accent)}
+  .pg-title .pg-tag{font-size:13.5px; color:var(--ink-dim)}
+  .install-btn{display:inline-flex; align-items:center; gap:7px; background:rgba(232,133,78,.1); color:var(--accent);
+    border:1px solid rgba(232,133,78,.32); border-radius:9px; font:inherit; font-size:13px; font-weight:600; padding:7px 13px; cursor:pointer; transition:.15s; white-space:nowrap}
+  .install-btn:hover{background:rgba(232,133,78,.18)} .install-btn.ok{color:var(--accent-2); border-color:rgba(87,200,189,.4); background:rgba(87,200,189,.1)}
+  .install-btn svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr)); gap:16px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; transition:.18s; display:flex; flex-direction:column}
   .card:hover{border-color:var(--line-2); transform:translateY(-3px); box-shadow:0 14px 40px -20px rgba(0,0,0,.8)}
-  .card .name{display:flex; align-items:center; gap:10px; margin-bottom:12px; flex-wrap:wrap}
-  .card .name code{font-size:16px; font-weight:600; color:var(--accent)}
-  .tag{font-size:11px; color:var(--ink-faint); border:1px solid var(--line); padding:2px 8px; border-radius:999px}
-  .card .desc{margin:0 0 16px; color:var(--ink-dim); font-size:14.5px}
-  .field{font-size:11.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.07em; margin:0 0 8px}
-  .triggers{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px}
-  .chip{font-size:11.5px; color:var(--accent-2); background:rgba(87,200,189,.08); border:1px solid rgba(87,200,189,.2); padding:3px 9px; border-radius:6px}
-  .example{position:relative; background:var(--code); border:1px solid var(--line); border-radius:10px; padding:11px 13px; margin-bottom:16px}
-  .example .q{color:#cdd5df; font-size:13.5px; font-style:italic; padding-right:58px}
-  .card-links{display:flex; gap:16px; font-size:13.5px}
-  .card-links a{color:var(--accent); display:inline-flex; align-items:center; gap:5px}
-  .card-links a:hover{text-decoration:underline}
+  .card .name{display:flex; align-items:center; gap:10px; margin-bottom:11px}
+  .card .name code{font-size:15.5px; font-weight:600; color:var(--accent)}
+  .card .desc{margin:0 0 14px; color:var(--ink-dim); font-size:14px; flex:0 0 auto}
+  .triggers{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px}
+  .chip{font-size:11px; color:var(--accent-2); background:rgba(87,200,189,.08); border:1px solid rgba(87,200,189,.2); padding:3px 8px; border-radius:6px}
+  .example{position:relative; background:var(--code); border:1px solid var(--line); border-radius:10px; padding:10px 12px; margin-bottom:14px; margin-top:auto}
+  .example .lbl{font-size:10.5px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px}
+  .example .q{color:#cdd5df; font-size:13px; font-style:italic; padding-right:54px; display:block}
+  .example .copy-btn{top:8px}
+  .card-links{display:flex; gap:14px; font-size:13px}
+  .card-links a{color:var(--accent)} .card-links a:hover{text-decoration:underline}
 
   .why{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px}
   .why .item{border-left:2px solid var(--accent); padding:4px 0 4px 16px}
-  .why .item h3{margin:0 0 6px; font-size:16px}
-  .why .item p{margin:0; color:var(--ink-dim); font-size:14px}
+  .why .item h3{margin:0 0 6px; font-size:16px} .why .item p{margin:0; color:var(--ink-dim); font-size:14px}
 
   .principles{background:var(--bg-soft); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
   .plist{display:grid; gap:14px; counter-reset:p; padding:0; margin:0}
-  .plist li{list-style:none; display:flex; gap:14px; align-items:flex-start; padding:16px 18px;
-    background:var(--card); border:1px solid var(--line); border-radius:12px}
-  .plist li::before{counter-increment:p; content:counter(p,decimal-leading-zero);
-    font-variant-numeric:tabular-nums; color:var(--accent); font-weight:700; font-size:14px;
-    border:1px solid var(--line); border-radius:8px; padding:4px 8px; background:var(--code)}
+  .plist li{list-style:none; display:flex; gap:14px; align-items:flex-start; padding:16px 18px; background:var(--card); border:1px solid var(--line); border-radius:12px}
+  .plist li::before{counter-increment:p; content:counter(p,decimal-leading-zero); font-variant-numeric:tabular-nums; color:var(--accent); font-weight:700; font-size:14px; border:1px solid var(--line); border-radius:8px; padding:4px 8px; background:var(--code)}
   .plist b{color:var(--ink)} .plist span{color:var(--ink-dim); font-size:14.5px}
 
   footer{padding:46px 0; border-top:1px solid var(--line); color:var(--ink-faint); font-size:14px}
@@ -154,8 +136,7 @@
         <button id="lang-zh" aria-pressed="false" onclick="setLang('zh')">中文</button>
       </div>
       <a class="gh" href="https://github.com/socake/cc-skillkit" target="_blank" rel="noopener">
-        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.5 15.6c.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-3.9 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.5.8 1.2.8 2.1 0 3-1.8 3.7-3.6 3.9.3.3.5.7.5 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0Z"/></svg>
-        GitHub
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.5 15.6c.4.1.5-.2.5-.4v-1.4c-2.2.5-2.7-1-2.7-1-.4-.9-.9-1.2-.9-1.2-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.8-.2-3.6-.9-3.6-3.9 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.5 7.5 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.5.8 1.2.8 2.1 0 3-1.8 3.7-3.6 3.9.3.3.5.7.5 1.5v2.2c0 .2.1.5.6.4A8 8 0 0 0 8 0Z"/></svg>GitHub
       </a>
     </div>
   </div>
@@ -165,7 +146,12 @@
   <div class="wrap">
     <span class="eyebrow"><span class="dot"></span> <span data-i18n="hero.eyebrow">Claude Code · plugin marketplace</span></span>
     <h1><span data-i18n="hero.title1">Portable skills for</span><br><span class="grad" data-i18n="hero.title2">DevOps &amp; SRE work</span></h1>
-    <p class="lead" data-i18n="hero.lead">A personal kit of Claude Code skills — packaged as an installable plugin marketplace. Versioned, CI-validated, and portable to any machine in one command.</p>
+    <p class="lead" data-i18n="hero.lead">A personal kit of Claude Code skills — packaged as installable plugins. Versioned, CI-validated, and portable to any machine in one command.</p>
+    <div class="stats">
+      <span class="stat"><b>13</b> <span data-i18n="stat.skills">skills</span></span>
+      <span class="stat"><b>3</b> <span data-i18n="stat.plugins">plugins</span></span>
+      <span class="stat"><b>1</b> <span data-i18n="stat.cmd">command to install</span></span>
+    </div>
     <div class="cta">
       <a class="btn btn-primary" href="https://github.com/socake/cc-skillkit" target="_blank" rel="noopener" data-i18n="hero.btnGithub">View on GitHub →</a>
       <a class="btn btn-ghost" href="#skills" data-i18n="hero.btnSkills">Browse skills</a>
@@ -174,9 +160,10 @@
       <button class="copy-btn" data-copy="claude plugin marketplace add socake/cc-skillkit&#10;claude plugin install ops-toolkit@cc-skillkit" aria-label="Copy">
         <svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="copy">Copy</span>
       </button>
-      <div class="label" data-i18n="install.label">Install on any machine — no clone needed</div>
-<pre><span class="c"># <span data-i18n="install.comment">register the marketplace + install the plugin</span></span>
+      <div class="label" data-i18n="install.label">Add the marketplace once, then install any toolkit</div>
+<pre><span class="c"># <span data-i18n="install.c1">add the marketplace once</span></span>
 <span class="k">claude</span> plugin marketplace add socake/cc-skillkit
+<span class="c"># <span data-i18n="install.c2">then install any toolkit (see below)</span></span>
 <span class="k">claude</span> plugin install ops-toolkit@cc-skillkit</pre>
     </div>
   </div>
@@ -186,49 +173,9 @@
   <div class="wrap">
     <div class="sec-head">
       <h2 data-i18n="skills.head">Skills</h2>
-      <p data-i18n="skills.sub">Each skill is vendor-neutral and secret-free — real operational experience distilled into general, repeatable procedure. Claude loads them on demand.</p>
+      <p data-i18n="skills.sub">13 skills across 3 plugins — each vendor-neutral and secret-free, real operational experience distilled into general, repeatable procedure. Install a toolkit, or copy a skill's trigger to try it.</p>
     </div>
-    <div class="grid">
-
-      <article class="card">
-        <div class="name"><code>k8s-triage</code> <span class="tag">ops-toolkit</span></div>
-        <p class="desc" data-i18n="sk1.desc">Read-only, evidence-first triage of an unhealthy Kubernetes workload. Drives a fixed order — workload → events → logs → scheduling → networking — and reports a named root cause, not a log dump. Encodes the traps that waste the most time: Pending is usually unschedulable not out-of-capacity; the crash is in <code>--previous</code> logs; memory-HPAs over-scale steady-memory services.</p>
-        <p class="field" data-i18n="sk.triggers">Triggers</p>
-        <div class="triggers">
-          <span class="chip">CrashLoopBackOff</span><span class="chip">Pending</span><span class="chip">OOMKilled</span>
-          <span class="chip">ImagePullBackOff</span><span class="chip">stuck rollout</span><span class="chip">post-deploy 5xx</span>
-        </div>
-        <p class="field" data-i18n="sk.example">Say this in Claude Code</p>
-        <div class="example">
-          <button class="copy-btn" data-copy="My pod is in CrashLoopBackOff, help me triage it" aria-label="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="copy">Copy</span></button>
-          <span class="q">“My pod is in CrashLoopBackOff, help me triage it”</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/socake/cc-skillkit/blob/main/plugins/ops-toolkit/skills/k8s-triage/SKILL.md" target="_blank" rel="noopener" data-i18n="sk.read">SKILL.md ↗</a>
-          <a href="https://github.com/socake/cc-skillkit/blob/main/plugins/ops-toolkit/skills/k8s-triage/references/symptom-playbooks.md" target="_blank" rel="noopener" data-i18n="sk.playbooks">Playbooks ↗</a>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="name"><code>incident-rca</code> <span class="tag">ops-toolkit</span></div>
-        <p class="desc" data-i18n="sk2.desc">Methodical root-cause analysis for an incident or regression. Reconstruct the timeline, correlate with recent changes, test multiple hypotheses in parallel under strict evidence discipline (every claim cites a log line, metric, or diff), drill to the mechanism — then emit a root-cause card or a blameless postmortem. The enemy it kills: the plausible-but-wrong first story.</p>
-        <p class="field" data-i18n="sk.triggers">Triggers</p>
-        <div class="triggers">
-          <span class="chip">timeline</span><span class="chip">change correlation</span><span class="chip">hypothesis matrix</span>
-          <span class="chip">5 whys</span><span class="chip">blameless postmortem</span>
-        </div>
-        <p class="field" data-i18n="sk.example">Say this in Claude Code</p>
-        <div class="example">
-          <button class="copy-btn" data-copy="Do a root cause analysis of last night's outage" aria-label="Copy"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span data-i18n="copy">Copy</span></button>
-          <span class="q">“Do a root cause analysis of last night's outage”</span>
-        </div>
-        <div class="card-links">
-          <a href="https://github.com/socake/cc-skillkit/blob/main/plugins/ops-toolkit/skills/incident-rca/SKILL.md" target="_blank" rel="noopener" data-i18n="sk.read">SKILL.md ↗</a>
-          <a href="https://github.com/socake/cc-skillkit/blob/main/plugins/ops-toolkit/skills/incident-rca/references/rca-templates.md" target="_blank" rel="noopener" data-i18n="sk.templates">Templates ↗</a>
-        </div>
-      </article>
-
-    </div>
+    <div id="skills-root"></div>
   </div>
 </section>
 
@@ -236,7 +183,7 @@
   <div class="wrap">
     <div class="sec-head"><h2 data-i18n="why.head">Why a marketplace, not loose skills</h2></div>
     <div class="why">
-      <div class="item"><h3 data-i18n="why.1h">Portable</h3><p data-i18n="why.1p">marketplace add socake/cc-skillkit rebuilds everything on a fresh box. No absolute paths.</p></div>
+      <div class="item"><h3 data-i18n="why.1h">Portable</h3><p data-i18n="why.1p">One command rebuilds everything on a fresh box. No absolute paths.</p></div>
       <div class="item"><h3 data-i18n="why.2h">Versioned &amp; validated</h3><p data-i18n="why.2p">Semver per plugin; CI checks every skill's frontmatter, naming, and manifest on each push.</p></div>
       <div class="item"><h3 data-i18n="why.3h">One-command lifecycle</h3><p data-i18n="why.3p">Install · update · uninstall · enable · disable through the official claude plugin CLI.</p></div>
     </div>
@@ -268,23 +215,72 @@
 </footer>
 
 <script>
+const REPO = "https://github.com/socake/cc-skillkit/blob/main/plugins";
+const COPY_SVG = '<svg viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>';
+
+const PLUGINS = [
+  { id:"ops-toolkit",      tag_en:"Triage & review",     tag_zh:"排障与审查" },
+  { id:"cloud-toolkit",    tag_en:"Cloud governance",    tag_zh:"云治理" },
+  { id:"workflow-toolkit", tag_en:"Workflow & output",   tag_zh:"工作流与产出" },
+];
+
+const SKILLS = [
+  { p:"ops-toolkit", n:"k8s-triage", chips:["CrashLoop","Pending","OOMKilled","5xx"],
+    en:{d:"Read-only, evidence-first triage of an unhealthy Kubernetes workload — fixed order, a named root cause, not a log dump.", ex:"My pod is in CrashLoopBackOff, help me triage it"},
+    zh:{d:"对异常 Kubernetes 工作负载只读、证据优先地排障 —— 固定顺序,给有据的根因而非一堆日志。", ex:"我的 pod 一直 CrashLoopBackOff,帮我排查"} },
+  { p:"ops-toolkit", n:"incident-rca", chips:["timeline","hypotheses","5 whys","postmortem"],
+    en:{d:"Methodical root-cause analysis: timeline, change correlation, parallel hypotheses under evidence discipline, then a root-cause card or postmortem.", ex:"Do a root cause analysis of last night's outage"},
+    zh:{d:"系统化根因分析:重建时间线、关联变更、证据纪律下并行验证假设,产出根因卡或无指责复盘。", ex:"对昨晚的故障做一次根因分析"} },
+  { p:"ops-toolkit", n:"eks-triage", chips:["nodegroup","VPC CNI","IRSA","Karpenter"],
+    en:{d:"EKS-specific triage: nodegroup won't join, aws-node/VPC CNI CrashLoop, IRSA/IAM gaps, Karpenter not scaling, subnet IP exhaustion.", ex:"My EKS nodes are stuck NotReady after scaling"},
+    zh:{d:"EKS 特有排障:节点组不上线、aws-node/VPC CNI 崩、IRSA/IAM 不足、Karpenter 不扩容、子网 IP 耗尽。", ex:"EKS 扩容后节点卡在 NotReady"} },
+  { p:"ops-toolkit", n:"ack-triage", chips:["ECI","Terway","CCM/SLB","image-pull"],
+    en:{d:"Aliyun ACK-specific triage: ECI image-pull timeouts (needs in-region mirror), node pools, Terway CNI, CCM/SLB with no backends.", ex:"ACK serverless pod is stuck pulling its image"},
+    zh:{d:"阿里云 ACK 特有排障:ECI 拉镜像超时(需就近 mirror)、节点池、Terway CNI、CCM/SLB 无后端。", ex:"ACK serverless pod 卡在拉镜像"} },
+  { p:"ops-toolkit", n:"dockerfile-audit", chips:["non-root","pin digest","multi-stage","no secrets"],
+    en:{d:"Audit a Dockerfile across security, size, reproducibility and maintainability — severity-ranked issues with fixes.", ex:"Review my Dockerfile for security and image size"},
+    zh:{d:"从安全/体积/可复现/可维护四轴审查 Dockerfile —— 按严重度给问题清单和修法。", ex:"审查我的 Dockerfile 的安全和镜像体积"} },
+
+  { p:"cloud-toolkit", n:"aws-cost-scan", chips:["idle NLB","orphan EBS","EIP","RI gap"],
+    en:{d:"Read-only sweep for AWS waste — idle load balancers, unattached EIPs, orphan snapshots, over-provisioned pools — ranked by monthly savings.", ex:"Find cost savings in my AWS account"},
+    zh:{d:"只读扫 AWS 浪费 —— 闲置负载均衡、未关联 EIP、孤儿快照、超配节点池 —— 按月省钱额排序。", ex:"找出我 AWS 账号里能省的钱"} },
+  { p:"cloud-toolkit", n:"ram-iam-audit", chips:["wildcard","FullAccess","stale keys","PassRole"],
+    en:{d:"Least-privilege audit for AWS IAM + Aliyun RAM — wildcard actions, FullAccess sprawl, stale keys, privilege-escalation combos.", ex:"Audit my IAM policies for over-broad permissions"},
+    zh:{d:"AWS IAM + 阿里云 RAM 最小权限审查 —— 通配 action、FullAccess 滥用、过期密钥、提权组合。", ex:"审查我的 IAM 策略有没有过宽权限"} },
+
+  { p:"workflow-toolkit", n:"pr-describe", chips:["what/why/how","risk","rollback"],
+    en:{d:"Turn a diff into a clear, reviewer-friendly PR description — what/why/how, risks, testing, rollback, reviewer notes.", ex:"Write a PR description for my current branch"},
+    zh:{d:"把 diff 变成清晰、reviewer 友好的 PR 描述 —— what/why/how、风险、测试、回滚、关注点。", ex:"给我当前分支写一份 PR 描述"} },
+  { p:"workflow-toolkit", n:"ops-session", chips:["plan","evidence-card","autonomy tiers","lessons"],
+    en:{d:"A structured operational-session protocol — Plan→RootCause→Action→Verify→Learn, weak root causes hard-block writes, conclusions cite evidence.", ex:"Start a structured ops session for this production change"},
+    zh:{d:"结构化运维会话协议 —— Plan→RootCause→Action→Verify→Learn,弱根因硬阻断写操作、结论必带证据。", ex:"为这次生产变更开一个结构化运维会话"} },
+  { p:"workflow-toolkit", n:"task-kickoff", chips:["plan-first","HITL","stop-loss","multi-session"],
+    en:{d:"An opening protocol for complex, long tasks — plan/implement split, externalized state, HITL gates, stop-loss after two failures, multi-round verification.", ex:"Help me kick off this multi-step refactor properly"},
+    zh:{d:"复杂长任务开场协议 —— plan/implement 分离、状态外化、人在环节点、两次失败止损、多轮验证。", ex:"帮我正式启动这个多步骤重构"} },
+  { p:"workflow-toolkit", n:"html-report", chips:["single-file","light theme","details","filter"],
+    en:{d:"Render a long markdown report into a polished, self-contained HTML onepager — cards, tables, collapsible sections, filter chips.", ex:"Turn this markdown report into a shareable HTML page"},
+    zh:{d:"把长 markdown 报告渲染成精致的单文件 HTML —— 卡片、表格、可折叠区、筛选 chip。", ex:"把这份 markdown 报告做成可分享的 HTML 页"} },
+  { p:"workflow-toolkit", n:"drawio-arch", chips:["architecture","flow","topology","PNG/SVG"],
+    en:{d:"End-to-end draw.io diagrams — architecture, flows, topology — rendered to PNG/SVG via the CLI, with a semantic style system.", ex:"Draw an architecture diagram of this system"},
+    zh:{d:"端到端用 draw.io 出图 —— 架构/流程/拓扑 —— CLI 渲染 PNG/SVG,带语义化样式体系。", ex:"给这个系统画一张架构图"} },
+  { p:"workflow-toolkit", n:"browser-verify", chips:["CDP","Playwright","console/network","trace"],
+    en:{d:"Containerized real-browser e2e verification over CDP — drive a click path, capture console/network, correlate with backend logs, return pass/fail.", ex:"Verify the login flow end-to-end in a real browser"},
+    zh:{d:"容器化真实浏览器 e2e 验证(CDP) —— 走点击流程、抓 console/network、关联后端日志,给过/挂结论。", ex:"用真实浏览器端到端验证登录流程"} },
+];
+
 const I18N = {
   en: {
     "nav.skills":"Skills","nav.why":"Why","nav.principles":"Principles",
     "hero.eyebrow":"Claude Code · plugin marketplace",
     "hero.title1":"Portable skills for","hero.title2":"DevOps & SRE work",
-    "hero.lead":"A personal kit of Claude Code skills — packaged as an installable plugin marketplace. Versioned, CI-validated, and portable to any machine in one command. No symlinks tied to one laptop.",
+    "hero.lead":"A personal kit of Claude Code skills — packaged as installable plugins. Versioned, CI-validated, and portable to any machine in one command. No symlinks tied to one laptop.",
+    "stat.skills":"skills","stat.plugins":"plugins","stat.cmd":"command to install",
     "hero.btnGithub":"View on GitHub →","hero.btnSkills":"Browse skills",
-    "install.label":"Install on any machine — no clone needed",
-    "install.comment":"register the marketplace + install the plugin",
-    "copy":"Copy",
-    "skills.head":"Skills",
-    "skills.sub":"Each skill is vendor-neutral and secret-free — real operational experience distilled into general, repeatable procedure. Claude loads them on demand.",
-    "sk.triggers":"Triggers","sk.example":"Say this in Claude Code","sk.read":"SKILL.md ↗","sk.playbooks":"Playbooks ↗","sk.templates":"Templates ↗",
-    "sk1.desc":"Read-only, evidence-first triage of an unhealthy Kubernetes workload. Drives a fixed order — workload → events → logs → scheduling → networking — and reports a named root cause, not a log dump. Encodes the traps that waste the most time: Pending is usually unschedulable not out-of-capacity; the crash is in --previous logs; memory-HPAs over-scale steady-memory services.",
-    "sk2.desc":"Methodical root-cause analysis for an incident or regression. Reconstruct the timeline, correlate with recent changes, test multiple hypotheses in parallel under strict evidence discipline (every claim cites a log line, metric, or diff), drill to the mechanism — then emit a root-cause card or a blameless postmortem. The enemy it kills: the plausible-but-wrong first story.",
+    "install.label":"Add the marketplace once, then install any toolkit","install.c1":"add the marketplace once","install.c2":"then install any toolkit (see below)",
+    "copy":"Copy","install":"Install","cardex":"Say this in Claude Code","carddoc":"SKILL.md ↗",
+    "skills.head":"Skills","skills.sub":"13 skills across 3 plugins — each vendor-neutral and secret-free, real operational experience distilled into general, repeatable procedure. Install a toolkit, or copy a skill's trigger to try it.",
     "why.head":"Why a marketplace, not loose skills",
-    "why.1h":"Portable","why.1p":"marketplace add socake/cc-skillkit rebuilds everything on a fresh box. No absolute paths.",
+    "why.1h":"Portable","why.1p":"One command rebuilds everything on a fresh box. No absolute paths.",
     "why.2h":"Versioned & validated","why.2p":"Semver per plugin; CI checks every skill's frontmatter, naming, and manifest on each push.",
     "why.3h":"One-command lifecycle","why.3p":"Install · update · uninstall · enable · disable through the official claude plugin CLI.",
     "pr.head":"Design principles","pr.sub":"The reasoning behind the kit — visible in every skill.",
@@ -299,18 +295,14 @@ const I18N = {
     "nav.skills":"技能","nav.why":"为何","nav.principles":"理念",
     "hero.eyebrow":"Claude Code · 插件市场",
     "hero.title1":"可移植的技能,服务于","hero.title2":"DevOps 与 SRE 工作",
-    "hero.lead":"一套个人的 Claude Code 技能合集 —— 以官方插件市场形式分发。带版本、经 CI 校验,一条命令即可装到任何机器,不再是绑死在某台笔记本上的软链。",
+    "hero.lead":"一套个人的 Claude Code 技能合集 —— 以可安装插件形式分发。带版本、经 CI 校验,一条命令即可装到任何机器,不再是绑死在某台笔记本上的软链。",
+    "stat.skills":"个技能","stat.plugins":"个插件","stat.cmd":"条命令安装",
     "hero.btnGithub":"在 GitHub 查看 →","hero.btnSkills":"浏览技能",
-    "install.label":"任何机器一行安装 —— 无需克隆",
-    "install.comment":"注册市场 + 安装插件",
-    "copy":"复制",
-    "skills.head":"技能",
-    "skills.sub":"每个技能都脱敏、不含任何密钥 —— 把真实的运维经验提炼成通用、可复用的流程。Claude 按需加载。",
-    "sk.triggers":"触发场景","sk.example":"在 Claude Code 里这样说","sk.read":"SKILL.md ↗","sk.playbooks":"排查手册 ↗","sk.templates":"模板 ↗",
-    "sk1.desc":"对异常的 Kubernetes 工作负载做只读、证据优先的排障。按固定顺序推进 —— 工作负载 → events → 日志 → 调度 → 网络 —— 给出有名有据的根因,而不是甩一堆日志。沉淀了最耗时的那些坑:Pending 多半是不可调度而非没资源;崩溃信息藏在 --previous 日志里;内存型 HPA 会把常驻内存服务虚假扩容。",
-    "sk2.desc":"针对事故或回归的系统化根因分析。重建时间线、关联近期变更、在严格的证据纪律下并行验证多个假设(每个结论都要指向具体日志行/指标/diff)、下钻到机制层根因 —— 最后产出根因卡或无指责复盘。它要消灭的:那个貌似合理实则错误的第一直觉。",
+    "install.label":"先注册市场一次,再按需安装任意 toolkit","install.c1":"注册市场(只需一次)","install.c2":"再安装任意 toolkit(见下方)",
+    "copy":"复制","install":"安装","cardex":"在 Claude Code 里这样说","carddoc":"SKILL.md ↗",
+    "skills.head":"技能","skills.sub":"3 个插件、13 个技能 —— 每个都脱敏、不含密钥,把真实运维经验提炼成通用可复用的流程。装一个 toolkit,或复制某个技能的触发语去试。",
     "why.head":"为什么用市场,而不是散装技能",
-    "why.1h":"可移植","why.1p":"marketplace add socake/cc-skillkit 在新机器上重建一切,不含任何绝对路径。",
+    "why.1h":"可移植","why.1p":"一条命令在新机器上重建一切,不含任何绝对路径。",
     "why.2h":"带版本 · 经校验","why.2p":"每个插件语义化版本;CI 在每次 push 校验每个技能的 frontmatter、命名和 manifest。",
     "why.3h":"一条命令的生命周期","why.3p":"安装 · 更新 · 卸载 · 启用 · 禁用,全走官方 claude plugin CLI。",
     "pr.head":"设计理念","pr.sub":"这套合集背后的思考 —— 在每个技能里都能看到。",
@@ -323,38 +315,68 @@ const I18N = {
   }
 };
 
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\n/g,"&#10;"); }
+
+function renderSkills(lang){
+  const t = I18N[lang];
+  const root = document.getElementById("skills-root");
+  root.innerHTML = PLUGINS.map(pl=>{
+    const tag = lang==="zh" ? pl.tag_zh : pl.tag_en;
+    const installCmd = `claude plugin marketplace add socake/cc-skillkit\nclaude plugin install ${pl.id}@cc-skillkit`;
+    const cards = SKILLS.filter(s=>s.p===pl.id).map(s=>{
+      const L = s[lang];
+      const chips = s.chips.map(c=>`<span class="chip">${esc(c)}</span>`).join("");
+      const doc = `${REPO}/${s.p}/skills/${s.n}/SKILL.md`;
+      return `<article class="card">
+        <div class="name"><code>${esc(s.n)}</code></div>
+        <p class="desc">${esc(L.d)}</p>
+        <div class="triggers">${chips}</div>
+        <div class="example">
+          <div class="lbl">${esc(t.cardex)}</div>
+          <button class="copy-btn" data-copy="${esc(L.ex)}" aria-label="Copy">${COPY_SVG}<span>${esc(t.copy)}</span></button>
+          <span class="q">${esc(L.ex)}</span>
+        </div>
+        <div class="card-links"><a href="${doc}" target="_blank" rel="noopener">${esc(t.carddoc)}</a></div>
+      </article>`;
+    }).join("");
+    return `<div class="plugin-group">
+      <div class="pg-head">
+        <div class="pg-title"><code>${esc(pl.id)}</code> <span class="pg-tag">${esc(tag)}</span></div>
+        <button class="install-btn" data-copy="${esc(installCmd)}" aria-label="Copy install command">${COPY_SVG}<span>${esc(t.install)}</span></button>
+      </div>
+      <div class="grid">${cards}</div>
+    </div>`;
+  }).join("");
+}
+
 function setLang(lang){
-  if(!I18N[lang]) lang = "en";
+  if(!I18N[lang]) lang="en";
   const dict = I18N[lang];
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const v = dict[el.getAttribute("data-i18n")];
-    if(v != null) el.innerHTML = v;
-  });
-  document.documentElement.lang = (lang === "zh") ? "zh-CN" : "en";
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const v=dict[el.getAttribute("data-i18n")]; if(v!=null) el.innerHTML=v; });
+  document.documentElement.lang = (lang==="zh") ? "zh-CN" : "en";
   document.getElementById("lang-en").setAttribute("aria-pressed", String(lang==="en"));
   document.getElementById("lang-zh").setAttribute("aria-pressed", String(lang==="zh"));
+  renderSkills(lang);
   try{ localStorage.setItem("cc-skillkit-lang", lang); }catch(e){}
 }
 
-// copy buttons
-document.querySelectorAll(".copy-btn").forEach(btn=>{
-  btn.addEventListener("click", async ()=>{
-    const text = btn.getAttribute("data-copy").replace(/&#10;/g,"\n");
-    try{
-      await navigator.clipboard.writeText(text);
-      const span = btn.querySelector("span");
-      const prev = span.textContent;
-      btn.classList.add("ok");
-      span.textContent = (document.documentElement.lang==="zh") ? "已复制" : "Copied";
-      setTimeout(()=>{ btn.classList.remove("ok"); span.textContent = prev; }, 1500);
-    }catch(e){}
-  });
+// one delegated handler for every copy / install button
+document.addEventListener("click", async (e)=>{
+  const btn = e.target.closest(".copy-btn, .install-btn");
+  if(!btn) return;
+  const text = btn.getAttribute("data-copy");
+  if(text==null) return;
+  try{
+    await navigator.clipboard.writeText(text);
+    const span = btn.querySelector("span"), prev = span.textContent;
+    btn.classList.add("ok");
+    span.textContent = (document.documentElement.lang==="zh") ? "已复制" : "Copied";
+    setTimeout(()=>{ btn.classList.remove("ok"); span.textContent=prev; }, 1500);
+  }catch(err){}
 });
 
-// init: saved pref → browser language → en
 (function(){
-  let saved;
-  try{ saved = localStorage.getItem("cc-skillkit-lang"); }catch(e){}
+  let saved; try{ saved=localStorage.getItem("cc-skillkit-lang"); }catch(e){}
   const lang = saved || ((navigator.language||"").toLowerCase().startsWith("zh") ? "zh" : "en");
   setLang(lang);
 })();
