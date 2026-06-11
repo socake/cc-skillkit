@@ -96,9 +96,16 @@ plugins/<plugin>/
   skills/<skill>/SKILL.md         a skill (+ optional references/, assets/)
 scripts/                          install · uninstall · new-skill · validate
 site/                             GitHub Pages landing page
+vendored/                         third-party skills (NOT my work; unregistered)
 .github/workflows/                validate.yml (CI) · pages.yml (deploy)
 CLAUDE.md                         authoring guide
 ```
+
+## Vendored (third-party) skills
+
+[`vendored/`](vendored/) holds third-party / community skills I carry for cross-machine reuse.
+They are **not my work** and are **not part of the marketplace** — only the `plugins/` toolkits
+are mine. See [`vendored/README.md`](vendored/README.md) for origins and attribution.
 
 ## License
 

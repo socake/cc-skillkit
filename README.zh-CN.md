@@ -91,9 +91,16 @@ plugins/<plugin>/
   skills/<skill>/SKILL.md         一个技能(+ 可选 references/、assets/)
 scripts/                          install · uninstall · new-skill · validate
 site/                             GitHub Pages 落地页
+vendored/                         第三方技能(非本人原创;未注册进市场)
 .github/workflows/                validate.yml(CI) · pages.yml(部署)
 CLAUDE.md                         编写指南
 ```
+
+## Vendored(第三方)技能
+
+[`vendored/`](vendored/) 收录我为跨机器复用而携带的第三方 / 社区技能。它们**非本人原创**,
+也**不属于市场插件**——只有 `plugins/` 下的工具箱才是我的作品。出处与归属见
+[`vendored/README.md`](vendored/README.md)。
 
 ## 许可证
 
